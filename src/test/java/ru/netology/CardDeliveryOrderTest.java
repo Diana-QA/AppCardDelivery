@@ -13,13 +13,13 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.*;
 
 public class CardDeliveryOrderTest {
-    String date = LocalDate.now().plusDays(10).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+    String date = LocalDate.now().plusDays(4).format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
 
     @BeforeEach
     void setUp() {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
-        Configuration.headless = true;
+//        Configuration.headless = true;
         open("http://localhost:9999/");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
     }
@@ -73,15 +73,5 @@ public class CardDeliveryOrderTest {
         $("[data-test-id='agreement']").click();
         $$("button").find(exactText("Забронировать")).click();
         $(".input_invalid .input__sub").shouldHave(text("Поле обязательно для заполнения"));
-    }
-
-    @Test
-    void shouldTestV6() {
-        $("[data-test-id='city'] input").setValue("Краснодар");
-        $("[data-test-id='date'] input").setValue("date");
-        $("[data-test-id='name'] input").setValue("Ефимов Александр");
-        $("[data-test-id='phone'] input").setValue("+79256678765");
-        $$("button").find(exactText("Забронировать")).click();
-        $(".input_invalid .checkbox__text").shouldHave(text("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
     }
 }
