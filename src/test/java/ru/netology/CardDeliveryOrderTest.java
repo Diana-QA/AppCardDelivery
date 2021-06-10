@@ -20,7 +20,6 @@ public class CardDeliveryOrderTest {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
         open("http://localhost:9999/");
-        Configuration.headless = true;
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
     }
 
@@ -73,5 +72,15 @@ public class CardDeliveryOrderTest {
         $("[data-test-id='agreement']").click();
         $$("button").find(exactText("Забронировать")).click();
         $(".input_invalid .input__sub").shouldHave(text("Поле обязательно для заполнения"));
+    }
+
+    @Test
+    void shouldTestV6() {
+        $("[data-test-id='city'] input").setValue("Краснодар");
+        $("[data-test-id='date'] input").setValue("date");
+        $("[data-test-id='name'] input").setValue("Ефимов Александр");
+        $("[data-test-id='phone'] input").setValue("+79256678765");
+        $$("button").find(exactText("Забронировать")).click();
+        $(".input_invalid .checkbox__text").shouldHave(text("Я соглашаюсь с условиями обработки и использования моих персональных данных"));
     }
 }
