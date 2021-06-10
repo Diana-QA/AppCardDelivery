@@ -19,6 +19,7 @@ public class CardDeliveryOrderTest {
     void setUp() {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
+        Configuration.headless = true;
         open("http://localhost:9999/");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
     }
