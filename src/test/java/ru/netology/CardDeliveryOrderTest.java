@@ -19,7 +19,6 @@ public class CardDeliveryOrderTest {
     void setUp() {
         Configuration.browser = "chrome";
         Configuration.startMaximized = true;
-//        Configuration.headless = true;
         open("http://localhost:9999/");
         $("[data-test-id='date'] input").doubleClick().sendKeys(Keys.BACK_SPACE);
     }
@@ -27,7 +26,7 @@ public class CardDeliveryOrderTest {
     @Test
     void shouldTestV1() {
         $("[data-test-id='city'] input").setValue("Краснодар");
-        $("[data-test-id='date'] input").setValue("date");
+        $("[data-test-id='date'] input").setValue(date);
         $("[data-test-id='name'] input").setValue("Ефимов Александр");
         $("[data-test-id='phone'] input").setValue("+79256678765");
         $("[data-test-id='agreement']").click();
